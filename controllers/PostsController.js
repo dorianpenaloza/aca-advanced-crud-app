@@ -40,7 +40,7 @@ module.exports = {
      }
      post.user = req.body.user;
      post.text = req.body.text;
-     post.updated = req.body.updated;
+     post.updated = new Date();
      post.save((err, post) => {
        res.redirect('/posts');
      });
