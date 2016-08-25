@@ -10,17 +10,6 @@ module.exports = {
     }); //end of PostModel.find
   },
 
-  // // Gets a single resource
-  // show(req, res, next) {
-  //   PostModel.findOne({ _id: req.params.id }, (err, post) => {
-  //     if (err) {
-  //       return next(err);
-  //     }
-  //     //res.json(post.text);
-  //     res.render('post', { post });
-  //   });
-  // },
-
   //Creates a new resource
   new(req, res, next) {
     res.render('post_form');
@@ -28,7 +17,7 @@ module.exports = {
   create(req, res, next) {
     const user = req.body.user;
     const text = req.body.text;
-    const updated = req.body.updated;
+    const updated = updated;
     const model = new PostModel({ user, text, updated });
 
     model.save((err, post) => {
@@ -51,7 +40,7 @@ module.exports = {
      }
      post.user = req.body.user;
      post.text = req.body.text;
-     post.updated = req.body.updated;
+     post.updated = updated;
      post.save((err, post) => {
        res.redirect('/posts');
      });

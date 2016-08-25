@@ -9,7 +9,6 @@
        <form method="POST" action="/posts/<%= post._id + '?_method=PUT' %>" >
          <input type="user" name="user" placeholder="Username" value="<%= post.user %>" />
          <input type="text" name="text" placeholder="Blog Text" value="<%= post.text %>" />
-         <input type="hidden" name="updated" value="<%= post.updated %>" />
          <input type="submit" value="Submit" />
        </form>
 
