@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Crud App</title>
+    </head>
+    <body>
+      <h2> Blog History </h2>
+      <% posts.forEach((post) => { %>
+        <div> User: <%= post.user %> <br>
+              Date: <%= post.updated %> <br>
+              Post: <%= post.text %> <a href="/posts/<%= post._id %>/edit">Update</a>
+        </div>
+        <hr>
+      <% }) %>
+
+      <h3>New Post</h3>
+      <% include post_form %>
+
+    </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Crud App</title>
+    </head>
+    <body>
+      <% if (post) { %>
+       <form method="POST" action="/posts/<%= post._id + '?_method=PUT' %>" >
+         <input type="user" name="user" placeholder="Username" value="<%= post.user %>" />
+         <input type="text" name="text" placeholder="Blog Text" value="<%= post.text %>" />
+         <input type="hidden" name="updated" value="<%= post.updated %>" />
+         <input type="submit" value="Submit" />
+       </form>
+
+       <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+           <input type="submit" value="Remove" />
+       </form>
+      <% } %>
+    </body>
+</html>
