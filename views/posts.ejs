@@ -8,7 +8,7 @@
       <h2> Blog History </h2>
       <% posts.forEach((post) => { %>
         <div> User: <%= post.user %> <br>
-              Date: <%= post.updated %> <br>
+              Date: <%= post.updated.toLocaleString(); %> <br>
               Post: <%= post.text %> <a href="/posts/<%= post._id %>/edit">Update</a>
         </div>
         <hr>
