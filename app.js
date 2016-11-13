@@ -1,7 +1,6 @@
 const http = require('http');
 const express = require('express');
 const path = require('path');
-var methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 
 //Routes
@@ -15,7 +14,6 @@ mongoose.connect('mongodb://localhost/crud-app');
 const app = express();
 
 // middleware
-app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); // The parser only accepts UTF-8 encoding.
 
@@ -26,6 +24,9 @@ app.set('view engine', 'ejs');
 
 // Sets our directory for serving static files
 app.use(express.static('public'));
+
+var methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 // Registering a simple route to redirect to '/posts'
 app.get('/', (req, res, next) => {
