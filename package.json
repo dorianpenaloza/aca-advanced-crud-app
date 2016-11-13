@@ -45,6 +45,7 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.10",
     "map-stream": "0.0.6",
+    "method-override": "^2.3.6",
     "mongoose": "^4.5.8",
     "nodemon": "^1.11.0",
     "require-dot-file": "^0.4.0",
