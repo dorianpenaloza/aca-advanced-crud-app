@@ -43,7 +43,9 @@ app.use(function(err, req, res, next) {
   });
 });
 
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+// Set up our server
+const server = http.createServer(app);
+const port = process.env.PORT || 8080;
+server.listen(port, () => {
+  console.log(`Server listening on: ${port}`);
 });
