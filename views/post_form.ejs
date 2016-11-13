@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Crud App</title>
-    </head>
-    <body>
-
-      <form method="POST" action="/posts">
-        <input type="user" name="user" placeholder="Username">
-        <input type="text" name="text" placeholder="Add your post here">
-        <input type="submit" value="New Post">
-      </form>
-
-    </body>
-</html>
+<div class="ui segments">
+  <div class="ui green inverted segment">
+    <h3><i class="edit icon"></i> New Post</h3>
+  </div>
+  <div class="ui segment">
+    <form method="POST" action="/posts">
+      <i class="user icon"></i>
+      <div class="ui input segments">
+        <input type="user" name="user" placeholder="Username" class="users icon" id="user">
+      </div>
+      <div class="ui form segments">
+        <textarea type="text" name="text" placeholder="Add your post here" id="text"/></textarea>
+      </div>
+      <button type="submit" class="ui green button">Post</button>
+    </form>
+  </div>
+</div>

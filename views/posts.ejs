@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Crud App</title>
-    </head>
-    <body>
+  <head>
+    <meta charset="UTF-8">
+    <title>CRUD Blog</title>
+    <link rel="stylesheet" type="text/css" href="styles/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/app.css">
+  </head>
+  <body>
+    <div class="ui blue inverted segment">
       <h2> Blog History </h2>
       <% posts.forEach((post) => { %>
-        <div> User: <%= post.user %> <br>
-              Date: <%= post.updated.toLocaleString(); %> <br>
-              Post: <%= post.text %> <a href="/posts/<%= post._id %>/edit">Update</a>
+        <div class="ui segment">
+          <i class="user icon"></i> <span id="user"><%= post.user %></span> <br>
+          <i class="calendar outline icon"></i> <%= post.updated.toLocaleString(); %> <br>
+          <span id="text"><%= post.text %></span>
+          <a class="modals" data-id="<%= post._id %>"><i class="edit icon"></i>Edit Post</a>
+          <div class="ui modal" id="modal" data-id="<%= post._id %>"> <% include post_edit %> </div>
         </div>
-        <hr>
       <% }) %>
+    </div>
 
-      <h3>New Post</h3>
-      <% include post_form %>
+    <!-- New Post -->
+    <% include post_form %>
 
-    </body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="styles/semantic/dist/semantic.min.js"></script>
+    <script type="text/javascript">
+      $('.modals').click(function(event){
+        var id = $(event.target).data('id');
+        $('#modal[data-id="' + id + '"]').modal('show');
+      })
+    </script>
+  </body>
 </html>

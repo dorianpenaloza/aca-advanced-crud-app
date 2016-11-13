@@ -4,7 +4,7 @@ const PostModel = require('../models/PostModel.js');
 const PostsController = require('../controllers/PostsController');
 
 //Get a list of resources
-router.get('/', PostsController.list);
+router.get('/', PostsController.list); //this will take us to our posts.ejs page
 
 //Create a new resource
 router.get('/new', PostsController.new);

@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Crud App</title>
-    </head>
-    <body>
-      <% if (post) { %>
-       <form method="POST" action="/posts/<%= post._id + '?_method=PUT' %>" >
-         <input type="user" name="user" placeholder="Username" value="<%= post.user %>" />
-         <input type="text" name="text" placeholder="Blog Text" value="<%= post.text %>" />
-         <input type="submit" value="Submit" />
-       </form>
-
-       <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
-           <input type="submit" value="Remove" />
-       </form>
-      <% } %>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD Blog</title>
+  <link rel="stylesheet" type="text/css" href="/../styles/semantic/dist/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/../styles/app.css">
+</head>
+<body>
+  <div class="ui blue inverted segment">
+    <h3>Edit Post</h3>
+    <% if (post) { %>
+     <form method="POST" action="/posts/<%= post._id + '?_method=PUT' %>" >
+       <i class="user icon"></i>
+       <div class="ui input segments">
+         <input type="user" name="user" placeholder="Username" value="<%= post.user %>" id="user"/>
+       </div>
+       <div class="ui form segments">
+         <textarea type="text" name="text" id="text"/><%= post.text %></textarea>
+       </div>
+       <!-- Start of Or groub button selection -->
+       <div class="ui large buttons">
+         <button type="submit" class="ui green button">Post</button>
+      </form>
+         <div class="or"></div>
+      <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+         <input type="submit" value="Remove" class="ui red button" />
+       </div>
+       <!-- End of Or groub button selection -->
+      </form>
+    <% } %>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="/../styles/semantic/dist/semantic.min.js"></script>
+</body>
 </html>
