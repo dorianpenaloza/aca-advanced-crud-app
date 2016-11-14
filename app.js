@@ -8,15 +8,15 @@ const posts = require('./routes/posts');
 
 // Set up database - connects to the mongo database
 const mongoose = require('mongoose');
-var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || mongoose.connect('mongodb://127.0.0.1:27017/test');
-// mongoose.connect('mongodb://localhost/crud-app');
-mongoose.connect(uristring, function (err, res) {
-      if (err) {
-      console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-      } else {
-      console.log ('Succeeded connected to: ' + uristring);
-      }
-    });
+mongoose.connect('mongodb://127.0.0.1:27017/test');
+// var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || mongoose.connect('mongodb://127.0.0.1:27017/test');
+// mongoose.connect(uristring, function (err, res) {
+//       if (err) {
+//       console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+//       } else {
+//       console.log ('Succeeded connected to: ' + uristring);
+//       }
+//     });
 // Creates an instance of our app
 const app = express();
 
