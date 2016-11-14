@@ -8,7 +8,7 @@ const posts = require('./routes/posts');
 
 // Set up database - connects to the mongo database
 const mongoose = require('mongoose');
-var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
+var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || mongoose.connect('mongodb://127.0.0.1:27017/test');
 // mongoose.connect('mongodb://localhost/crud-app');
 mongoose.connect(uristring, function (err, res) {
       if (err) {
