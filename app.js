@@ -8,15 +8,16 @@ const posts = require('./routes/posts');
 
 // Set up database - connects to the mongo database
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/crud-app');
+//mongoose.connect('mongodb://localhost/crud-app');
 // var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || mongoose.connect('mongodb://127.0.0.1:27017/test');
-// mongoose.connect(uristring, function (err, res) {
-//       if (err) {
-//       console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-//       } else {
-//       console.log ('Succeeded connected to: ' + uristring);
-//       }
-//     });
+
+// Here we find an appropriate database to connect to, defaulting to
+// localhost if we don't find one.
+var uristring =
+process.env.MONGOLAB_URI ||
+process.env.MONGOHQ_URL ||
+'mongodb://localhost/crud-app';
+
 // Creates an instance of our app
 const app = express();
 
@@ -52,12 +53,26 @@ app.use(function(err, req, res, next) {
 });
 
 // Set up our server
-app.set('port', (process.env.PORT || 3000));
+// app.set('port', (process.env.PORT || 3000));
+//
+// //For avoidong Heroku $PORT error
+// app.get('/', function(request, response) {
+//     var result = 'App is running'
+//     response.send(result);
+// }).listen(app.get('port'), function() {
+//     console.log('App is running, server is listening on port ', app.get('port'));
+// });
 
-//For avoidong Heroku $PORT error
-app.get('/', function(request, response) {
-    var result = 'App is running'
-    response.send(result);
-}).listen(app.get('port'), function() {
-    console.log('App is running, server is listening on port ', app.get('port'));
+// The http server will listen to an appropriate port, or default to
+// port 5000.
+var theport = process.env.PORT || 5000;
+
+// Makes connection asynchronously.  Mongoose will queue up database
+// operations and release them when the connection is complete.
+mongoose.connect(uristring, function (err, res) {
+  if (err) {
+  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+  console.log ('Succeeded connected to: ' + uristring);
+  }
 });
