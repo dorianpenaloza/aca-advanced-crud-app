@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 //mongoose.connect('mongodb://localhost/crud-app');
 
-const databaseUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/crud-app';
+const databaseUrl = process.env.MONGODB_URI || 'mongodb://localhost/crud-app';
 mongoose.Promise = global.Promise;
 mongoose.connect(databaseUrl)
   .then(() => console.log((`[mongoose] Connected to MongoDB!`)))
