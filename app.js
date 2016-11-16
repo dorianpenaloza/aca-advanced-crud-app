@@ -8,7 +8,7 @@ const posts = require('./routes/posts');
 
 // Set up database - connects to the mongo database
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/test');
+mongoose.connect('mongodb://localhost/crud-app');
 // var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || mongoose.connect('mongodb://127.0.0.1:27017/test');
 // mongoose.connect(uristring, function (err, res) {
 //       if (err) {
@@ -52,8 +52,12 @@ app.use(function(err, req, res, next) {
 });
 
 // Set up our server
-const server = http.createServer(app);
-const port = process.env.PORT || 8080;
-server.listen(port, () => {
-  console.log(`Server listening on: ${port}`);
+app.set('port', (process.env.PORT || 3000));
+
+//For avoidong Heroku $PORT error
+app.get('/', function(request, response) {
+    var result = 'App is running'
+    response.send(result);
+}).listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
 });
