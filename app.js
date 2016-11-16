@@ -2,19 +2,25 @@ const http = require('http');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-
-//Routes
 const posts = require('./routes/posts');
-
-// Set up database - connects to the mongo database
-var uristring =process.env.MONGOLAB_URI ||
-process.env.MONGOHQ_URL ||
-    'mongodb://localhost/HelloMongoose';
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/crud-app');
+
+//mongoose.connect('mongodb://localhost/crud-app');
+
+const databaseUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/crud-app';
+mongoose.Promise = global.Promise;
+mongoose.connect(databaseUrl)
+  .then(() => console.log((`[mongoose] Connected to MongoDB!`)))
+  .catch(err => {
+    return console.log((`[mongoose] Unable to connect to MongoDB! ${err}`));
+  });
 
 // Creates an instance of our app
 const app = express();
+
+const env = process.env.NODE_ENV || 'development';
+const port = process.env.PORT || 3000;
+app.set('port', port);
 
 // middleware
 app.use(bodyParser.json());
@@ -48,8 +54,9 @@ app.use(function(err, req, res, next) {
 });
 
 // Set up our server
-const server = http.createServer(app);
-const port = process.env.PORT || 8080;
-server.listen(port, () => {
-  console.log(`Server listening on: ${port}`);
-});
+// const server = http.createServer(app);
+// const port = process.env.PORT || 8080;
+// server.listen(port, () => {
+//   console.log(`Server listening on: ${port}`);
+// });
+app.listen(port, () => console.log((`[express] Listening on port: ${port} [${env}]`)))
