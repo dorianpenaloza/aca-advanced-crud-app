@@ -5,7 +5,7 @@ module.exports = {
   //Gets a list of resources
   list(req, res, next) {
     PostModel.find((err, posts) => {
-    res.render('posts', { posts });
+      res.render('posts', { posts });
     }); //end of PostModel.find
   },
 
